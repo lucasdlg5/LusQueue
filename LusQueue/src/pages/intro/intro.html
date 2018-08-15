@@ -16,20 +16,25 @@
 </ion-header>
 -->
 <!-- Fim - Tirando o header da pagina inical do aplicativo-->
-<!--<ion-content padding>--> <!--Retirando as bordas presentes no aplicativo-->
+<ion-content padding> <!--Retirando as bordas presentes no aplicativo-->
 <ion-content >
     <ion-slides pager>
 
-        <ion-slide style="background-color: green">
-          <h2>Slide 1</h2>
+        <ion-slide class="slide_image">
+          <img src="assets/imgs/14.jpg" alt="">
+          <h2>Olha</h2>
         </ion-slide>
       
-        <ion-slide style="background-color: blue">
-          <h2>Slide 2</h2>
+        <ion-slide class="slide_image">
+           <img src="assets/imgs/14.jpg" alt="">
+          <h2>Esse</h2>
         </ion-slide>
       
-        <ion-slide style="background-color: red">
-          <h2>Slide 3</h2>
+        <ion-slide class="slide_image">
+            <img src="assets/imgs/14.jpg" alt="">
+          <h2>Doguinho</h2>
+
+          <a  (click)="goToTabsPage()">IZI MALIA!!</a> <!--Adicionamos um evento de CLICK para quando clicar no texto dentro do ultimo slider-->
         </ion-slide>
       
       </ion-slides>
