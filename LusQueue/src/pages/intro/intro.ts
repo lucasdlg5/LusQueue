@@ -22,4 +22,6 @@ export class IntroPage {
     console.log('ionViewDidLoad IntroPage');
   }
 
+  
+
 }
