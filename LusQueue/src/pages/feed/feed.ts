@@ -34,9 +34,22 @@ export class FeedPage {
     alert(num1+num2);
   }*/
 
+  public likeAction():void{
+    alert("Ocorreu um erro: Falha com Sucesso.");
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedPage');
     //this.somaDoisNumeros(10,99); //Aqui chamamos a funcao criada acima ao carregar a pagina do Ionic
+  }
+
+  public content_feed = {
+    f_title: "Melhor Doguinho Protegido",
+    f_date: "Novembro 5, 2018",
+    f_content: "Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you have a protected doggo?!... Whoa. This is heavy.",
+    f_likes: 12,
+    f_comments: 4,
+    f_postHours: 11
   }
 
 }

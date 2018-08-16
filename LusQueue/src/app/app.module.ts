@@ -8,7 +8,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
-
+import {HttpModule} from "@angular/http"; //Devemos adicionar o module para conexão HTTP do Angular
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeedPageModule } from '../pages/feed/feed.module';
@@ -26,7 +26,8 @@ import { IntroPageModule } from '../pages/intro/intro.module';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     FeedPageModule,
-    IntroPageModule
+    IntroPageModule,
+    HttpModule //Apos inserir a importacao acima, adicionar aqui para importa-lo ao projeto
   ],
   bootstrap: [IonicApp],
   entryComponents: [

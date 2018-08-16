@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Feed</ion-title>
+    <ion-title>Feed de Noticias</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,33 +22,32 @@
         <img src="assets/imgs/14.jpg">
       </ion-avatar>
       <!-- Criamos uma classe para que possamos aplicar no SASS (SCSS) sendo especifico para cada elemento-->
-      <h2 class="feed_title">Melhor Doguinho Protegido</h2>
-      <p class="feed_date">November 5, 1955</p>
+      <h2 class="feed_title">{{content_feed.f_title}}</h2>
+      <p class="feed_date">{{content_feed.f_date}}</p>
     </ion-item>
 
     <img src="assets/imgs/14.jpg">
 
     <ion-card-content>
-      <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you
-        built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+      <p>{{content_feed.f_content}}</p>
     </ion-card-content>
 
     <ion-row>
       <ion-col>
         <button ion-button icon-start clear small>
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>12 Likes</div>
+          <div (click)="likeAction()">{{content_feed.f_likes}} Curtidas</div>
         </button>
       </ion-col>
       <ion-col>
         <button ion-button icon-start clear small>
-          <ion-icon name="text"></ion-icon>
-          <div>4 Comments</div>
+          <ion-icon name="text" ></ion-icon>
+          <div>{{content_feed.f_comments}} Comentarios</div>
         </button>
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-          11h ago
+          {{content_feed.f_postHours}}h Atrás
         </ion-note>
       </ion-col>
     </ion-row>
