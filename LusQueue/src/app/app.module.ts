@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeedPageModule } from '../pages/feed/feed.module';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { MoovieProvider } from '../providers/moovie/moovie';
+import { HttpClientModule } from '@angular/common/http'; //Foi necessario importar esta lib, por conta de uma atualizacao do Angular
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MoovieProvider } from '../providers/moovie/moovie';
     IonicModule.forRoot(MyApp),
     FeedPageModule,
     IntroPageModule,
-    HttpModule //Apos inserir a importacao acima, adicionar aqui para importa-lo ao projeto
+    HttpModule, //Apos inserir a importacao acima, adicionar aqui para importa-lo ao projeto
+    HttpClientModule //Adicionado tambem!!
   ],
   bootstrap: [IonicApp],
   entryComponents: [
