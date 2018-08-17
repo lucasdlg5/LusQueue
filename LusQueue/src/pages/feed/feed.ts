@@ -46,6 +46,9 @@ export class FeedPage {
     alert("Ocorreu um erro: Falha com Sucesso.");
   }
 
+  public lista_filmes = new Array<any>();
+  public filme_image_link:String = "https://image.tmdb.org/t/p/w500";
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedPage');
     //this.somaDoisNumeros(10,99); //Aqui chamamos a funcao criada acima ao carregar a pagina do Ionic
@@ -53,7 +56,12 @@ export class FeedPage {
       //O Data e Error é como um Try Catch do TypeScript
       //o => é como se fosse declarar uma funcao em uma unica linha só
       data => {
-        console.log(data);
+        const response = (data as any); //Fazendo o Casting de objeto para any, assim podemos acessar os dados do objeto 
+        //const objeto_retorno = JSON.parse(response._object);// Não é preciso fazer o parse do SJON, pois o Angular 4 ja o faz internamente!
+        //alert("Nome do Filme:"+response.original_title+"\Resumo:"+response.overview+"\nStatus:"+response.status+"\nCidades de producao:"+response.production_countries[0].name);
+        this.lista_filmes = response.results // Capturando somente a lista de filmes do array enviado pelo JSON
+      
+       
       }, error => {
         console.log(error);
       }
@@ -61,13 +69,6 @@ export class FeedPage {
     ); 
   }
 
-  public content_feed = {
-    f_title: "Melhor Doguinho Protegido",
-    f_date: "Novembro 5, 2018",
-    f_content: "Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you have a protected doggo?!... Whoa. This is heavy.",
-    f_likes: 12,
-    f_comments: 4,
-    f_postHours: 11
-  }
+  
 
 }

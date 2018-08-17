@@ -14,40 +14,42 @@
 
 
 <ion-content padding>
+  
   <h1>{{nomeUsuario}} <!-- Binding - Isso se chama Interpolação no Angular--></h1>
-  <ion-card>
+  <ion-card *ngFor="let filme of lista_filmes"> <!-- Propriedade do angular que faz o ID Ionic se repetir como se fosse um FOR !!-->
 
     <ion-item>
       <ion-avatar item-start>
         <img src="assets/imgs/14.jpg">
       </ion-avatar>
       <!-- Criamos uma classe para que possamos aplicar no SASS (SCSS) sendo especifico para cada elemento-->
-      <h2 class="feed_title">{{content_feed.f_title}}</h2>
-      <p class="feed_date">{{content_feed.f_date}}</p>
+      <h2 class="feed_title">{{filme.original_title}}</h2>
+      <p class="feed_date">{{filme.release_date}}</p>
     </ion-item>
 
-    <img src="assets/imgs/14.jpg">
+    <!--<img src="{{filme_image_link+filme.backdrop_path}}">--> <!--Minha forma arcaica, porem funciona-->
+    <img [src]="'https://image.tmdb.org/t/p/w500/'+filme.backdrop_path">
 
     <ion-card-content>
-      <p>{{content_feed.f_content}}</p>
+      <p>{{filme.overview}}</p>
     </ion-card-content>
 
     <ion-row>
       <ion-col>
         <button ion-button icon-start clear small>
           <ion-icon name="thumbs-up"></ion-icon>
-          <div (click)="likeAction()">{{content_feed.f_likes}} Curtidas</div>
+          <div (click)="likeAction()">{{filme.vote_count}} Curtidas</div>
         </button>
       </ion-col>
       <ion-col>
         <button ion-button icon-start clear small>
           <ion-icon name="text" ></ion-icon>
-          <div>{{content_feed.f_comments}} Comentarios</div>
+          <div>{{filme.popularity}} Comentarios</div>
         </button>
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-          {{content_feed.f_postHours}}h Atrás
+          {{filme.vote_average}}h Atrás
         </ion-note>
       </ion-col>
     </ion-row>
