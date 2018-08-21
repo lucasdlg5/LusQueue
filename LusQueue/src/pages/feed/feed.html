@@ -28,7 +28,7 @@
     </ion-item>
 
     <!--<img src="{{filme_image_link+filme.backdrop_path}}">--> <!--Minha forma arcaica, porem funciona-->
-    <img [src]="'https://image.tmdb.org/t/p/w500/'+filme.backdrop_path">
+    <img [src]="'https://image.tmdb.org/t/p/w500/'+filme.backdrop_path"> <!--em [src] fazemos uma especie de binding, onde possibilita usar as variaveis do TypeScript aqui-->
 
     <ion-card-content>
       <p>{{filme.overview}}</p>

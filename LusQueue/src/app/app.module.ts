@@ -14,7 +14,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeedPageModule } from '../pages/feed/feed.module';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { MoovieProvider } from '../providers/moovie/moovie';
-import { HttpClientModule } from '@angular/common/http'; //Foi necessario importar esta lib, por conta de uma atualizacao do Angular
+import { HttpClientModule } from '@angular/common/http';
+import { ConfigProvider } from '../providers/config/config'; //Foi necessario importar esta lib, por conta de uma atualizacao do Angular
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HttpClientModule } from '@angular/common/http'; //Foi necessario import
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MoovieProvider
+    MoovieProvider,
+    ConfigProvider
   ]
 })
 export class AppModule {}
