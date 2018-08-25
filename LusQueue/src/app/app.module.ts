@@ -1,3 +1,6 @@
+import { SobrePageModule } from './../pages/sobre/sobre.module';
+import { PerfilPageModule } from './../pages/perfil/perfil.module';
+import { FeedPage } from './../pages/feed/feed';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -16,6 +19,9 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 import { MoovieProvider } from '../providers/moovie/moovie';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfigProvider } from '../providers/config/config'; //Foi necessario importar esta lib, por conta de uma atualizacao do Angular
+import { LoginPageModule } from '../pages/login/login.module';
+import { LoginPage } from '../pages/login/login';
+import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,9 @@ import { ConfigProvider } from '../providers/config/config'; //Foi necessario im
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    FeedPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +39,11 @@ import { ConfigProvider } from '../providers/config/config'; //Foi necessario im
     FeedPageModule,
     IntroPageModule,
     HttpModule, //Apos inserir a importacao acima, adicionar aqui para importa-lo ao projeto
-    HttpClientModule //Adicionado tambem!!
+    HttpClientModule, //Adicionado tambem!!
+    // LoginPageModule
+    ConfiguracoesPageModule,
+    PerfilPageModule,
+    SobrePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,6 +52,9 @@ import { ConfigProvider } from '../providers/config/config'; //Foi necessario im
     ContactPage,
     HomePage,
     TabsPage,
+    FeedPage,
+    LoginPage,
+
   ],
   providers: [
     StatusBar,
