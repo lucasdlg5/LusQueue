@@ -14,7 +14,10 @@
 
 
 <ion-content padding>
-  
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
   <h1>{{nomeUsuario}} <!-- Binding - Isso se chama Interpolação no Angular--></h1>
   <ion-card *ngFor="let filme of lista_filmes"> <!-- Propriedade do angular que faz o ID Ionic se repetir como se fosse um FOR !!-->
 

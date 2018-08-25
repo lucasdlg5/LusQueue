@@ -20,6 +20,8 @@ import { MoovieProvider } from '../../providers/moovie/moovie';
 export class FeedPage {
 
 public loader; //Variavel publica que sera consumida em outras telas dizendo quando deve carregar ou nao dentro das funcoes
+public refresher;
+public isRefreshing:boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -55,14 +57,25 @@ public loader; //Variavel publica que sera consumida em outras telas dizendo qua
     alert(num1+num2);
   }*/
 
+  doRefresh(refresher) {
+    // console.log('Begin async operation', refresher);
+    this.refresher = refresher; //Insere na variavel global o parametro recebido do reresher no HTML
+    this.isRefreshing = true; //Aqui diz que esta carregando a lista de filmes pelo usuario
+    this.carregarFilmes();  
+    // setTimeout(() => {
+    //   console.log('Async operation has ended');
+    //   refresher.complete(); //Faz desaparecer a aba de carregando
+    // }, 2000);
+  }
+
   public likeAction():void{
     alert("Ocorreu um erro: Falha com Sucesso.");
   }
 
   public lista_filmes = new Array<any>();
   public filme_image_link:String = "https://image.tmdb.org/t/p/w500";
-
-  ionViewDidEnter() { //ionViewDidLoad carrega os conteudos somente uma unica vez - ionViewDidEnter carrega todas as vezes que a pagina ser aberta
+  
+  carregarFilmes(){
     this.presentLoading(); // Dizendo para abrir a tela de carregamento
     console.log('ionViewDidLoad FeedPage');
     //this.somaDoisNumeros(10,99); //Aqui chamamos a funcao criada acima ao carregar a pagina do Ionic
@@ -76,14 +89,26 @@ public loader; //Variavel publica que sera consumida em outras telas dizendo qua
         this.lista_filmes = response.results // Capturando somente a lista de filmes do array enviado pelo JSON
       
        this.closeLoading(); //Dizendo para fechar a tela de carregamento depois que todo o JSON foi recebido. 
+       if (this.isRefreshing){
+         this.refresher.complete();// Aqui fala depois que o carregamento do conteudo foi completado, finalizar o scroll
+         this.isRefreshing = false;
+       }
       }, error => {
         console.log(error);
-        this.closeLoading(); //Adicionado para fechar caso ocorra algum erro no carregamento do JSON (com erro ele nao termina de executar todo o codigo e cai na expetion)
+        this.closeLoading(); //Adicionado para fechar caso ocorra algum erro no carregamento do JSON (com erro ele nao termina de executar todo o codigo e cai na expetion )
+        if (this.isRefreshing){
+          this.refresher.complete();// Aqui fala depois que o carregamento do conteudo foi completado, finalizar o scroll
+          this.isRefreshing = false;
+        }
       }
-
+  
     ); 
   }
+  ionViewDidEnter() { //ionViewDidLoad carrega os conteudos somente uma unica vez - ionViewDidEnter carrega todas as vezes que a pagina ser aberta
+    this.carregarFilmes();
+  }
 
+  
   
 
 }
