@@ -30,7 +30,7 @@ import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.mo
     ContactPage,
     HomePage,
     TabsPage,
-    FeedPage,
+    // FeedPage,
     LoginPage
   ],
   imports: [
