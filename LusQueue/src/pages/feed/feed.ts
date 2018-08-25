@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { MoovieProvider } from '../../providers/moovie/moovie';
 
 /**
@@ -19,13 +19,26 @@ import { MoovieProvider } from '../../providers/moovie/moovie';
 })
 export class FeedPage {
 
-
+public loader; //Variavel publica que sera consumida em outras telas dizendo quando deve carregar ou nao dentro das funcoes
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private moovieProvider: MoovieProvider //Adicionamos as informaçoes que será enviada via injeção para dentro da classe na variavel moovieProvider (M Minusculo!!)
-    ) {
+    private moovieProvider: MoovieProvider, //Adicionamos as informaçoes que será enviada via injeção para dentro da classe na variavel moovieProvider (M Minusculo!!)
+    public loadingCtrl: LoadingController  //Traz as configurações para a tela de carregamento de conteudo
+  ) {
+  }
+
+  presentLoading() { //Faz exibir a tela de carregando
+     this.loader = this.loadingCtrl.create({
+      content: "Instalando Baidu...",
+      // duration: 3000
+    });
+    this.loader.present(); //Faz aparecer a tela de carregando
+  }
+
+  closeLoading(){
+    this.loader.dismiss(); //Fazer fechar a caixa de carragando
   }
 
     /*Aqui podemos colocar todas as nossas variaveis para que possa ser consumido no APP!
@@ -49,7 +62,8 @@ export class FeedPage {
   public lista_filmes = new Array<any>();
   public filme_image_link:String = "https://image.tmdb.org/t/p/w500";
 
-  ionViewDidLoad() {
+  ionViewDidEnter() { //ionViewDidLoad carrega os conteudos somente uma unica vez - ionViewDidEnter carrega todas as vezes que a pagina ser aberta
+    this.presentLoading(); // Dizendo para abrir a tela de carregamento
     console.log('ionViewDidLoad FeedPage');
     //this.somaDoisNumeros(10,99); //Aqui chamamos a funcao criada acima ao carregar a pagina do Ionic
     this.moovieProvider.getLatestMoovies().subscribe(
@@ -61,9 +75,10 @@ export class FeedPage {
         //alert("Nome do Filme:"+response.original_title+"\Resumo:"+response.overview+"\nStatus:"+response.status+"\nCidades de producao:"+response.production_countries[0].name);
         this.lista_filmes = response.results // Capturando somente a lista de filmes do array enviado pelo JSON
       
-       
+       this.closeLoading(); //Dizendo para fechar a tela de carregamento depois que todo o JSON foi recebido. 
       }, error => {
         console.log(error);
+        this.closeLoading(); //Adicionado para fechar caso ocorra algum erro no carregamento do JSON (com erro ele nao termina de executar todo o codigo e cai na expetion)
       }
 
     ); 
